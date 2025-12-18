@@ -1,4 +1,4 @@
-# Regras e Requesitos
+# Regras e Requisitos
 
 ## Regras de Negócio
 
@@ -14,7 +14,7 @@
 * **RN4**: Após um processo concluído com sucesso, o serviço deverá criar registros locais de informações referentes ao funcionamento do cliente e, quando necessário, ao funcionamento do sistema. Em caso de falha no processo, o sistema deverá garantir que nenhum registro local de informações seja criado.
   **RFs relacionados**: RF8
 
-## Requesitos Funcionais
+## Requisitos Funcionais
 
 * **RF0**: O sistema deve conter campos de escolha e/ou direcionamento para dados estruturados ao usuário.
 
@@ -36,7 +36,7 @@
 
 * **RF9**: O sistema deverá conter funcionalidade de interpretação de comandos, bem como uma padronização para leitura e escrita de arquivos documentais.
 
-## Requesitos não Funcionais
+## Requisitos não Funcionais
 
 * **RNF0**: O sistema, bem como os seus respectivos processos, deverá garantir 99,9% de integridade na transmissão e no processamento de quaisquer dados relacionados a serviços e funcionalidades de persistência.
 
