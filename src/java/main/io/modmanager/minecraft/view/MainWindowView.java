@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.Dimension;
+import java.awt.Color;
 
 public class MainWindowView extends JFrame {
 
@@ -23,6 +24,7 @@ public class MainWindowView extends JFrame {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new BorderLayout(0,0));
         this.setIconImage(logo.getImage());
+        this.getContentPane().setBackground(new Color(0xFFF8F7));
 
         this.centralizeScreen();
 
