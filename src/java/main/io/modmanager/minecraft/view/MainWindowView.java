@@ -16,6 +16,8 @@ public class MainWindowView extends JFrame {
 
     private JPanel panelStatus;
     private JPanel panelProperitys;
+    private JPanel panelTitleProperitys;
+    private JPanel panelTitleStatus;
 
     public MainWindowView(String title) {
 
@@ -27,6 +29,9 @@ public class MainWindowView extends JFrame {
 
         panelStatus = new JPanel();
         panelProperitys = new JPanel();
+
+        panelTitleProperitys = new JPanel();
+        panelTitleStatus = new JPanel();
 
         // -----+
 
@@ -45,6 +50,9 @@ public class MainWindowView extends JFrame {
 
         this.colorJPanels();
 
+        this.addJComponentsInPanelProperitys();
+        this.addJComponentsInPanelStatus();
+
     }
 
     public void addJComponentsInWindow() {
@@ -54,20 +62,37 @@ public class MainWindowView extends JFrame {
 
     }
 
+    public void addJComponentsInPanelProperitys() {
+
+        this.panelProperitys.add(this.panelTitleProperitys);
+
+    }
+
+    public void addJComponentsInPanelStatus() {
+
+        this.panelStatus.add(this.panelTitleStatus);
+
+    }
+
     public void configJPanels() {
 
         this.panelStatus.setPreferredSize(new Dimension(0,120));
-        this.panelStatus.setVisible(false);
+        this.panelStatus.setLayout(null);
+        this.panelStatus.setVisible(true);
 
         this.panelProperitys.setPreferredSize(new Dimension(0,80));
-        this.panelProperitys.setVisible(false);
+        this.panelProperitys.setLayout(null);
+        this.panelProperitys.setVisible(true);
 
+        this.panelTitleStatus.setBounds(10,20,this.getSize().width-35,30);
+
+        this.panelTitleProperitys.setBounds(10,20,this.getSize().width-35,30);
     }
 
     public void colorJPanels() {
 
-        this.panelStatus.setBackground(Color.red);
-        this.panelProperitys.setBackground(Color.blue);
+        this.panelTitleStatus.setBackground(new Color(0x3CAAE8));
+        this.panelTitleProperitys.setBackground(new Color(0x3CAAE8));
 
     }
 
