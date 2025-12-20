@@ -3,9 +3,11 @@ package io.modmanager.minecraft.view;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JProgressBar;
 import javax.swing.ImageIcon;
 
 import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.Toolkit;
 import java.awt.Dimension;
 import java.awt.Color;
@@ -19,10 +21,13 @@ public class MainWindowView extends JFrame implements ActionListener {
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private ImageIcon logo;
 
+    private JProgressBar barLoading;
+
     private JPanel panelStatus;
     private JPanel panelProperitys;
     private JPanel panelTitleProperitys;
     private JPanel panelTitleStatus;
+    private JPanel panelCommandStatus;
 
     private JLabel labelTitleProperitys;
     private JLabel labelTitleStatus;
@@ -33,12 +38,16 @@ public class MainWindowView extends JFrame implements ActionListener {
 
     private ButtonView buttonOpenMods;
     private ButtonView buttonOpenRepository;
+    private ButtonView buttonInjectMods;
+    private ButtonView buttonClearMods;
 
     public MainWindowView(String title) {
 
         super(title);
 
         logo = new ImageIcon(MainWindowView.class.getResource("/img/modManagerLogo.png"));
+
+        barLoading = new JProgressBar();
 
         // JPanel +-----
 
@@ -47,6 +56,8 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         panelTitleProperitys = new JPanel();
         panelTitleStatus = new JPanel();
+
+        panelCommandStatus = new JPanel();
 
         // -----+
 
@@ -65,8 +76,10 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         // JButton +------
 
-        buttonOpenMods = new ButtonView("");
-        buttonOpenRepository = new ButtonView("");
+        buttonOpenMods = new ButtonView("",new Color(0xECC13F),new Color(0xC7A438));
+        buttonOpenRepository = new ButtonView("",new Color(0xECC13F),new Color(0xC7A438));
+        buttonInjectMods = new ButtonView("",new Color(0xECC13F),new Color(0xC7A438));
+        buttonClearMods = new ButtonView("",new Color(0xDD3347),new Color(0xB02636));
 
         // ------+
 
@@ -95,6 +108,8 @@ public class MainWindowView extends JFrame implements ActionListener {
         this.fontJLabels();
 
         this.configJButton();
+
+        this.configJProgressBar();
 
     }
 
@@ -125,8 +140,13 @@ public class MainWindowView extends JFrame implements ActionListener {
     public void addJComponentsInPanelStatus() {
 
         this.panelStatus.add(this.panelTitleStatus);
+        this.panelStatus.add(this.panelCommandStatus);
+        this.panelStatus.add(this.barLoading);
 
         this.panelTitleStatus.add(this.labelTitleStatus,BorderLayout.WEST);
+
+        this.panelCommandStatus.add(this.buttonInjectMods);
+        this.panelCommandStatus.add(this.buttonClearMods);
 
     }
 
@@ -143,8 +163,11 @@ public class MainWindowView extends JFrame implements ActionListener {
         this.panelTitleProperitys.setBounds(10,20,this.getSize().width-35,30);
         this.panelTitleProperitys.setLayout(new BorderLayout());
 
-        this.panelTitleStatus.setBounds(10,10,this.getSize().width-35,30);
+        this.panelTitleStatus.setBounds(10,0,this.getSize().width-35,30);
         this.panelTitleStatus.setLayout(new BorderLayout());
+
+        this.panelCommandStatus.setBounds(0,65,this.getSize().width,65);
+        this.panelCommandStatus.setLayout(null);
 
     }
 
@@ -152,6 +175,8 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         this.panelTitleStatus.setBackground(new Color(0x3CAAE8));
         this.panelTitleProperitys.setBackground(new Color(0x3CAAE8));
+
+        this.panelCommandStatus.setBackground(new Color(0x71A94C));
 
     }
 
@@ -227,6 +252,15 @@ public class MainWindowView extends JFrame implements ActionListener {
         this.buttonOpenRepository.setBounds(10,260,100,30);
         this.buttonOpenRepository.addActionListener(this);
 
+        this.buttonInjectMods.setText("Injetar");
+        this.buttonInjectMods.setBounds((this.getSize().width/2)-150,13,100,30);
+        this.buttonInjectMods.addActionListener(this);
+
+        this.buttonClearMods.setText("Clear");
+        this.buttonClearMods.setBounds((this.getSize().width/2)+40,13,100,30);
+        this.buttonClearMods.setBackground(Color.red);
+        this.buttonClearMods.addActionListener(this);
+
     }
 
     @Override
@@ -240,7 +274,25 @@ public class MainWindowView extends JFrame implements ActionListener {
 
             System.out.println("Open repository");
 
+        }else if (e.getSource()==buttonInjectMods) {
+
+            System.out.println("Injected mods");
+            this.barLoading.setValue(this.barLoading.getValue()+1);
+
+        }else {
+
+            System.out.println("Clear mods");
+            this.barLoading.setValue(0);
+
         }
+
+    }
+
+    public void configJProgressBar() {
+
+        this.barLoading.setValue(0);
+        this.barLoading.setBounds(0,45,this.getSize().width,20);
+        this.barLoading.setStringPainted(true);
 
     }
 

@@ -15,12 +15,15 @@ public class ButtonView extends JButton {
 
     private boolean hover = false;
 
-    private final Color normal = new Color(0xECC13F);
-    private final Color hoverColor = new Color(0xC7A438);
-    private final int radius = 8;
+    private Color normal;
+    private Color hoverColor;
+    private int radius = 8;
 
-    public ButtonView(String text) {
+    public ButtonView(String text, Color color, Color colorHover) {
         super(text);
+
+        normal = color;
+        hoverColor = colorHover;
 
         setFocusPainted(false);
         setBorderPainted(false);
