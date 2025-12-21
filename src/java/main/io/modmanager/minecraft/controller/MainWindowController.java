@@ -66,8 +66,6 @@ public class MainWindowController {
         if (!service.existsModManager()) {
 
             service.makeModManagerStructure();
-            window.getLabelShowPathMods().setText(service.getPathMinecraftMods());
-            window.getLabelShowPathRepository().setText(service.getPathModManagerRepository());
 
         }
 
@@ -79,6 +77,8 @@ public class MainWindowController {
 
         }
 
+        window.getLabelShowPathMods().setText(service.getPathMinecraftMods());
+        window.getLabelShowPathRepository().setText(service.getPathModManagerRepository());
 
     }
 

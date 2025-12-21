@@ -207,10 +207,8 @@ public class MainWindowView extends JFrame implements ActionListener {
         this.labelTextPathRepository.setText("Caminho do diretório para atualizações dos mods");
         this.labelTextPathRepository.setBounds(10,200,this.getSize().width-35,25);
 
-        this.labelShowPathMods.setText("C:\\.minecraft\\mods");
         this.labelShowPathMods.setBounds(10,95,this.getSize().width-35,25);
 
-        this.labelShowPathRepository.setText("C:\\home\repository");
         this.labelShowPathRepository.setBounds(10,230,this.getSize().width-35,25);
 
     }
