@@ -1,8 +1,7 @@
 package io.modmanager.minecraft.service;
 
 import io.modmanager.minecraft.infra.os.ProcessCommand;
-
-import java.io.IOException;
+import io.modmanager.minecraft.infra.os.EngineOS;
 
 public class MainWindowService {
 
@@ -10,13 +9,13 @@ public class MainWindowService {
 
     public boolean openMods() {
 
-        return this.open(System.getenv("APPDATA")+"\\"+".minecraft"+"\\"+"mods");
+        return this.open(String.valueOf(EngineOS.pathMinecraftMods.toString()));
 
     }
 
     public boolean openRepository() {
 
-        return this.open(System.getProperty("user.home")+"\\"+"Documents"+"\\"+"modManager"+"\\"+"repository");
+        return this.open(EngineOS.pathModManagerRepository.toString());
 
     }
 
