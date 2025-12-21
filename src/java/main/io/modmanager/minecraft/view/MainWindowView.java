@@ -343,4 +343,16 @@ public class MainWindowView extends JFrame implements ActionListener {
 
     }
 
+    public JLabel getLabelShowPathMods() {
+
+        return labelShowPathMods;
+
+    }
+
+    public JLabel getLabelShowPathRepository() {
+
+        return labelShowPathRepository;
+
+    }
+
 }

@@ -6,6 +6,7 @@ import io.modmanager.minecraft.infra.os.EngineOS;
 public class MainWindowService {
 
     private ProcessCommand pros = new ProcessCommand();
+    private EngineOS engine = new EngineOS();
 
     public boolean openMods() {
 
@@ -16,6 +17,54 @@ public class MainWindowService {
     public boolean openRepository() {
 
         return this.open(EngineOS.pathModManagerRepository.toString());
+
+    }
+
+    public boolean existsMinecraft() {
+
+        return engine.existsMinecraft();
+    }
+
+    public boolean existsMinecraftMods() {
+
+        return engine.existsMinecraftMods();
+
+    }
+
+    public boolean existsModManager() {
+
+        return engine.existsModManager();
+
+    }
+
+    public boolean existsModManagerRepository() {
+
+        return engine.existsModManagerRepository();
+
+    }
+
+    public void makeModManagerStructure() {
+
+        engine.createModManager();
+        engine.createRepository();
+
+    }
+
+    public void makeRepository() {
+
+        engine.createRepository();
+
+    }
+
+    public String getPathMinecraftMods() {
+
+        return engine.pathMinecraftMods.toString();
+
+    }
+
+    public String getPathModManagerRepository() {
+
+        return engine.pathModManagerRepository.toString();
 
     }
 

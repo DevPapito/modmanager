@@ -28,11 +28,28 @@ public class EngineOS {
 
     public boolean existsMinecraft() { return existsPath(pathMinecraft); }
 
-    public boolean exitsMinecraftMods() { return existsPath(pathMinecraftMods);}
+    public boolean existsMinecraftMods() { return existsPath(pathMinecraftMods);}
 
     public boolean existsModManager() { return existsPath(pathModManager);}
 
     public boolean existsModManagerRepository() { return existsPath(pathModManagerRepository);}
+
+    public void createModManager() {
+
+        try{
+            Files.createDirectory(pathModManager);
+        }catch(IOException e){}
+
+
+    }
+
+    public void createRepository() {
+
+        try{
+            Files.createDirectory(pathModManagerRepository);
+        }catch(IOException e){}
+
+    }
 
     public void removeAllMods(Path pathDirectory, String glob) {
 

@@ -5,6 +5,7 @@ import io.modmanager.minecraft.view.MainWindowView;
 import io.modmanager.minecraft.service.MainWindowService;
 
 import javax.swing.JProgressBar;
+import javax.swing.JOptionPane;
 
 public class MainWindowController {
 
@@ -41,6 +42,43 @@ public class MainWindowController {
         if (!verify) return false;
 
         return true;
+
+    }
+
+    public void inicializer() {
+
+        if (!service.existsMinecraft()) {
+
+            System.out.println('\u0007');
+            JOptionPane.showMessageDialog(null,"Não foi encontrado a pasta raiz do minecraft em %APPDATA%. Impossível iniciar o programa.","Erro minecraft",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+
+        }
+
+        if (!service.existsMinecraftMods()) {
+
+            System.out.println('\u0007');
+            JOptionPane.showMessageDialog(null,"Não foi encontrado a pasta \"mods\" em .minecraft. Impossível iniciar o programa.","Erro pasta mods",JOptionPane.ERROR_MESSAGE);
+            System.exit(0);
+
+        }
+
+        if (!service.existsModManager()) {
+
+            service.makeModManagerStructure();
+            window.getLabelShowPathMods().setText(service.getPathMinecraftMods());
+            window.getLabelShowPathRepository().setText(service.getPathModManagerRepository());
+
+        }
+
+        if (!service.existsModManagerRepository()) {
+
+            System.out.println('\u0007');
+            JOptionPane.showMessageDialog(null,"A pasta \"repository\" foi criada novamente com sucesso!","Informação",JOptionPane.INFORMATION_MESSAGE);
+            service.makeRepository();
+
+        }
+
 
     }
 

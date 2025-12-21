@@ -20,8 +20,8 @@ public final class MainApplication {
 
         SwingUtilities.invokeLater(() -> {
 
+            controller.inicializer();
             window.setVisible(true);
-            window.connect();
 
         });
 
