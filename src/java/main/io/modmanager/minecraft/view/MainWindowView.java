@@ -1,5 +1,7 @@
 package io.modmanager.minecraft.view;
 
+import io.modmanager.minecraft.controller.MainWindowController;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
@@ -18,7 +20,10 @@ import java.awt.event.ActionListener;
 
 public class MainWindowView extends JFrame implements ActionListener {
 
+    private MainWindowController controller;
+
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+
     private ImageIcon logo;
 
     private JProgressBar barLoading;
@@ -41,9 +46,11 @@ public class MainWindowView extends JFrame implements ActionListener {
     private ButtonView buttonInjectMods;
     private ButtonView buttonClearMods;
 
-    public MainWindowView(String title) {
+    public MainWindowView(String title, MainWindowController controller) {
 
         super(title);
+
+        this.controller = controller;
 
         logo = new ImageIcon(MainWindowView.class.getResource("/img/modManagerLogo.png"));
 
@@ -110,6 +117,12 @@ public class MainWindowView extends JFrame implements ActionListener {
         this.configJButton();
 
         this.configJProgressBar();
+
+    }
+
+    public void connect() {
+
+        this.controller.testSincre();
 
     }
 
@@ -268,11 +281,32 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         if (e.getSource()==buttonOpenMods) {
 
-            System.out.println("Open .minecraft!");
+            boolean verify = this.controller.startMinecraftModsFolder();
+
+            if (!verify) {
+
+                System.out.println("Sem minecraft");
+
+            }else {
+
+                System.out.println("Com minecraft");
+
+            }
 
         }else if (e.getSource()==buttonOpenRepository) {
 
-            System.out.println("Open repository");
+            boolean verify = this.controller.startRepositoryFolder();
+
+            if (!verify) {
+
+                System.out.println("Sem repository");
+
+            }else {
+
+                System.out.println("Com repository");
+
+            }
+
 
         }else if (e.getSource()==buttonInjectMods) {
 
@@ -300,6 +334,12 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         this.setLocation((this.screen.width - this.getSize().width)/2,
                 (this.screen.height - this.getSize().height)/2);
+
+    }
+
+    public JProgressBar getBarLoading() {
+
+        return barLoading;
 
     }
 
