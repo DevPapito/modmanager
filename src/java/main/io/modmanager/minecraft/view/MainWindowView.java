@@ -308,6 +308,7 @@ public class MainWindowView extends JFrame implements ActionListener {
         }else {
 
             System.out.println("Clear mods");
+            this.controller.deleteAllMinecraftMods();
             this.barLoading.setValue(0);
 
         }

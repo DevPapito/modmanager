@@ -41,7 +41,6 @@ public class MainWindowController {
 
     public void updateMinecraftMods() {
 
-        System.out.println("To aqui!");
         boolean verify = service.copyMods(service.getPathModManagerRepository(),"*.jar",window.getBarLoading());
 
         if (!verify) {
@@ -55,6 +54,26 @@ public class MainWindowController {
 
         System.out.println('\u0007');
         JOptionPane.showMessageDialog(null,"Os mods foram passados com sucesso!","Mods",JOptionPane.INFORMATION_MESSAGE);
+
+    }
+
+    public void deleteAllMinecraftMods() {
+
+        boolean verify = service.deleteAllMods(service.getPathMinecraftMods(),"*.jar",window.getBarLoading());
+
+
+        if (!verify) {
+
+            System.out.println('\u0007');
+            JOptionPane.showMessageDialog(null,"A pasta \"mods\" já está vazia!","Vazio",JOptionPane.WARNING_MESSAGE);
+
+            return ;
+
+        }
+
+        System.out.println('\u0007');
+        JOptionPane.showMessageDialog(null,"Os mods foram deletados com sucesso!","Mods",JOptionPane.INFORMATION_MESSAGE);
+
 
     }
 

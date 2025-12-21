@@ -66,6 +66,12 @@ public class MainWindowService {
 
     }
 
+    public boolean deleteAllMods(Path path, String glob, JProgressBar bar) {
+
+        return engine.removeAllMods(path,glob,bar);
+
+    }
+
     public Path getPathMinecraftMods() {
 
         return engine.pathMinecraftMods;

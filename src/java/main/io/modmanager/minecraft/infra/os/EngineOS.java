@@ -53,8 +53,9 @@ public class EngineOS {
 
     }
 
-    public void removeAllMods(Path pathDirectory, String glob,JProgressBar bar) {
+    public boolean removeAllMods(Path pathDirectory, String glob,JProgressBar bar) {
 
+        int rounds = 0;
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(pathDirectory,glob)) {
 
             for (Path path : stream) {
@@ -65,11 +66,17 @@ public class EngineOS {
 
                 bar.setValue(bar.getValue()+1);
 
+                rounds++;
+
             }
+
+            if (rounds == 0) return false;
 
             bar.setValue(100);
 
         }catch(IOException e){}
+
+        return true;
 
     }
 
