@@ -19,12 +19,6 @@ public class MainWindowController {
 
     }
 
-    public void testSincre() {
-
-        window.getBarLoading().setValue(50);
-
-    }
-
     public boolean startMinecraftModsFolder() {
 
         boolean verify = service.openMods();
@@ -42,6 +36,25 @@ public class MainWindowController {
         if (!verify) return false;
 
         return true;
+
+    }
+
+    public void updateMinecraftMods() {
+
+        System.out.println("To aqui!");
+        boolean verify = service.copyMods(service.getPathModManagerRepository(),"*.jar",window.getBarLoading());
+
+        if (!verify) {
+
+            System.out.println('\u0007');
+            JOptionPane.showMessageDialog(null,"Pasta \"repository\" vazia, sem mods passados!","Vazio",JOptionPane.WARNING_MESSAGE);
+
+            return ;
+
+        }
+
+        System.out.println('\u0007');
+        JOptionPane.showMessageDialog(null,"Os mods foram passados com sucesso!","Mods",JOptionPane.INFORMATION_MESSAGE);
 
     }
 
@@ -77,8 +90,8 @@ public class MainWindowController {
 
         }
 
-        window.getLabelShowPathMods().setText(service.getPathMinecraftMods());
-        window.getLabelShowPathRepository().setText(service.getPathModManagerRepository());
+        window.getLabelShowPathMods().setText(service.getPathMinecraftMods().toString());
+        window.getLabelShowPathRepository().setText(service.getPathModManagerRepository().toString());
 
     }
 

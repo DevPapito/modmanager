@@ -7,6 +7,8 @@ import java.nio.file.StandardCopyOption;
 
 import java.io.IOException;
 
+import javax.swing.JProgressBar;
+
 public class EngineOS {
 
     public static final String SEPARATOR = System.getProperty("file.separator");
@@ -51,10 +53,9 @@ public class EngineOS {
 
     }
 
-    public void removeAllMods(Path pathDirectory, String glob) {
+    public void removeAllMods(Path pathDirectory, String glob,JProgressBar bar) {
 
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(pathDirectory,glob)) {
-
 
             for (Path path : stream) {
 
@@ -62,31 +63,48 @@ public class EngineOS {
 
                 Files.delete(destiny);
 
+                bar.setValue(bar.getValue()+1);
+
             }
+
+            bar.setValue(100);
 
         }catch(IOException e){}
 
     }
 
-    public void copyMods(Path pathDirectory, String glob) {
+    public boolean copyMods(Path pathDirectory, String glob,JProgressBar bar) {
 
+        int rounds = 0;
         try(DirectoryStream<Path> stream = Files.newDirectoryStream(pathDirectory,glob)) {
 
             for (Path path : stream) {
 
                 Path destiny = buildPathDestiny(path.getFileName());
+                System.out.println(path);
+                System.out.println(destiny);
 
                 Files.copy(path, destiny, StandardCopyOption.REPLACE_EXISTING);
 
+                bar.setValue(bar.getValue()+1);
+
+                rounds++;
+
             }
 
+            if (rounds == 0) return false;
+
+            bar.setValue(100);
+
         }catch(IOException e){}
+
+        return true;
 
     }
 
     private static Path buildPathDestiny(Path path) {
 
-        return pathMinecraftMods.resolve(EngineOS.SEPARATOR+path);
+        return Path.of(pathMinecraftMods+EngineOS.SEPARATOR+path);
 
     }
 

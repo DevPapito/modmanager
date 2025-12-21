@@ -3,6 +3,10 @@ package io.modmanager.minecraft.service;
 import io.modmanager.minecraft.infra.os.ProcessCommand;
 import io.modmanager.minecraft.infra.os.EngineOS;
 
+import java.nio.file.Path;
+
+import javax.swing.JProgressBar;
+
 public class MainWindowService {
 
     private ProcessCommand pros = new ProcessCommand();
@@ -56,15 +60,21 @@ public class MainWindowService {
 
     }
 
-    public String getPathMinecraftMods() {
+    public boolean copyMods(Path path, String glob,JProgressBar bar) {
 
-        return engine.pathMinecraftMods.toString();
+        return engine.copyMods(path,glob,bar);
 
     }
 
-    public String getPathModManagerRepository() {
+    public Path getPathMinecraftMods() {
 
-        return engine.pathModManagerRepository.toString();
+        return engine.pathMinecraftMods;
+
+    }
+
+    public Path getPathModManagerRepository() {
+
+        return engine.pathModManagerRepository;
 
     }
 

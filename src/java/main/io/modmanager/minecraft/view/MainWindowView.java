@@ -120,12 +120,6 @@ public class MainWindowView extends JFrame implements ActionListener {
 
     }
 
-    public void connect() {
-
-        this.controller.testSincre();
-
-    }
-
     public void addJComponentsInWindow() {
 
         this.add(this.panelStatus,BorderLayout.SOUTH);
@@ -308,8 +302,8 @@ public class MainWindowView extends JFrame implements ActionListener {
 
         }else if (e.getSource()==buttonInjectMods) {
 
-            System.out.println("Injected mods");
-            this.barLoading.setValue(this.barLoading.getValue()+1);
+            this.controller.updateMinecraftMods();
+            this.barLoading.setValue(0);
 
         }else {
 
